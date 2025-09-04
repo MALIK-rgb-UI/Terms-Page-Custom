@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governance Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #005293;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #005293 0%, #FF941D 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-button {
+            background: none;
+            border: none;
+            color: #005293;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+        }
+        
+        .nav-right {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .icon-button {
+            background: none;
+            border: 1px solid #e5e7eb;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        
+        .icon-button:hover {
+            background: #f8f9fa;
+            border-color: #005293;
+            color: #005293;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #005293;
+            margin-bottom: 24px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #666666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px 0;
+        }
+        
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #005293 0%, #FF941D 100%);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0, 82, 147, 0.2);
+        }
+        
+        .section h2 {
+            font-size: 52px;
+            font-weight: 500;
+            color: #005293;
+            margin-bottom: 16px;
+        }
+        
+        .section > p {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 32px;
+        }
+        
+        .subsection {
+            margin-bottom: 40px;
+        }
+        
+        .subsection h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #FF941D;
+            margin-bottom: 20px;
+        }
+        
+        .policy-item, .legal-item {
+            background: #f8f9fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-item::before, .legal-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #FF941D;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .policy-item:hover, .legal-item:hover {
+            background: #ffffff;
+            border-color: #005293;
+            box-shadow: 0 8px 25px rgba(0, 82, 147, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .policy-item:hover::before, .legal-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .policy-item h4, .legal-item h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #005293;
+            margin-bottom: 8px;
+        }
+        
+        .policy-item p, .legal-item p {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.4;
+        }
+        
+        .view-all-link {
+            color: #FF941D;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .view-all-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Special sections */
+        .full-width-section {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .transparency-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            grid-column: 1 / -1;
+        }
+        
+        .transparency-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        
+        .company-info h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #005293;
+            margin-bottom: 16px;
+        }
+        
+        .company-info p {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 8px;
+        }
+        
+        .company-info a {
+            color: #FF941D;
+            text-decoration: none;
+        }
+        
+        .company-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .transparency-policies {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            padding: 40px 0;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .section h2 {
+                font-size: 36px;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .transparency-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .transparency-policies {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Settings Modal */
+        .settings-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .settings-modal.show {
+            display: flex;
+        }
+
+        .settings-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            width: 320px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .settings-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #005293;
+            margin: 0;
+        }
+
+        .close-settings {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-settings:hover {
+            color: #005293;
+        }
+
+        .settings-section {
+            margin-bottom: 20px;
+        }
+
+        .settings-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .settings-dropdown {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .settings-dropdown:hover {
+            border-color: #005293;
+        }
+
+        .dropdown-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .country-flag {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        .dropdown-arrow {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .follow-up {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .follow-up a {
+            color: #FF941D;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .follow-up a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive settings modal */
+        @media (max-width: 768px) {
+            .settings-content {
+                width: 90%;
+                max-width: 320px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a href="/" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        Compliance Hub
+                    </a>
+                    <div class="nav-buttons">
+                        <button class="nav-button">Legal</button>
+                        <button class="nav-button">Company</button>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <button class="icon-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="icon-button">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <button class="icon-button" id="settingsBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </nav>
+            
+            <div class="hero">
+                <h1>Governance Portal</h1>
+                <p>Empowering you through absolute transparency. Discover our comprehensive approach to privacy, security, accessibility, and responsible digital stewardship</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button class="close-settings" id="closeSettings">×</button>
+            </div>
+
+            <div class="settings-section">
+                <label class="settings-label">Language</label>
+                <div class="settings-dropdown" id="languageDropdown">
+                    <div class="dropdown-content">
+                        <span>English</span>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <label class="settings-label">Country</label>
+                <div class="settings-dropdown" id="countryDropdown">
+                    <div class="dropdown-content">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15'%3E%3Crect width='20' height='15' fill='%23006c35'/%3E%3Crect width='20' height='10' y='5' fill='%23fff'/%3E%3Cpath d='M0 0h20v2.5H0zm0 12.5h20V15H0z' fill='%23006c35'/%3E%3Ccircle cx='6' cy='7.5' r='3' fill='%23fff'/%3E%3Cpath d='M7.5 6.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5z' fill='%23006c35'/%3E%3C/svg%3E" alt="Pakistan Flag" class="country-flag">
+                        <span>Pakistan</span>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+            </div>
+
+            <div class="follow-up">
+                <a href="#" id="followUpLink">Follow up on your requests</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-content">
+            <!-- Privacy Section -->
+            <div class="section">
+                <div class="section-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2>Privacy</h2>
+                <p>Transparent management of personal data collection, usage, and protection practices</p>
+                
+                <!-- Interactive Tools -->
+                <div class="subsection">
+                    <a href="/consents" class="policy-item">
+                        <h4>Consent receipts</h4>
+                        <p>Track and review your previous consent preferences</p>
+                    </a>
+                    <a href="#" class="policy-item">
+                        <h4>Manage cookies</h4>
+                        <p>Control and customize your website tracking preferences</p>
+                    </a>
+                </div>
+                
+                <!-- Policies -->
+                <div class="subsection">
+                    <h3>Policies</h3>
+                    <a href="/legal/policy/cookie-policy" class="policy-item">
+                        <h4>Cookie Policy</h4>
+                        <p>This Cookie Policy explains how we use cookies and similar technologies, including what types of cookies we use, why we use them, and how you can manage your cookie preferences.</p>
+                    </a>
+                    <a href="/legal/policy/liability-disclaimer-policy" class="policy-item">
+                        <h4>Liability Disclaimer Policy</h4>
+                        <p>The Apex Technologies Liability Disclaimer Policy establishes that while we provide compliance automation, data processing, and governance tools, the company does not guarantee legal compliance for all jurisdictions.</p>
+                    </a>
+                    <a href="#" class="view-all-link">View all policies →</a>
+                </div>
+            </div>
+
+            <!-- Legal Section -->
+            <div class="section">
+                <div class="section-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h2>Legal</h2>
+                <p>Comprehensive repository of official company legal terms, policies, and agreements</p>
+                
+                <div class="subsection">
+                    <a href="/legal/terms/terms-of-service" class="legal-item">
+                        <h4>Terms of Service</h4>
+                        <p>Governs use of Apex Technologies' platforms and applications, including compliance tools and data processing services. Covers user responsibilities, subscriptions, payments, account restrictions, acceptable use, privacy, and dispute resolution.</p>
+                    </a>
+                    <a href="/legal/agreement/affiliate-program-agreement" class="legal-item">
+                        <h4>Partner Program Agreement</h4>
+                        <p>This agreement outlines eligibility, compensation terms, code of conduct, intellectual property use, dispute resolution, and compliance requirements for our technology partners.</p>
+                    </a>
+                    <a href="/legal/agreement/data-processing-agreement" class="legal-item">
+                        <h4>Data Processing Agreement</h4>
+                        <p>This agreement governs how Apex Technologies processes personal data on behalf of clients, ensuring compliance with data protection laws like GDPR, CCPA, and other global privacy regulations.</p>
+                    </a>
+                    <a href="#" class="view-all-link">View all legal documents →</a>
+                </div>
+            </div>
+
+            <!-- Accessibility Section -->
+            <div class="section">
+                <div class="section-icon">
+                    <i class="fas fa-universal-access"></i>
+                </div>
+                <h2>Accessibility</h2>
+                <p>Committed to equal digital access and inclusive user experiences for all</p>
+                
+                <div class="subsection">
+                    <a href="#" class="policy-item">
+                        <h4>Accessibility settings</h4>
+                        <p>Personalize your website experience with custom display options</p>
+                    </a>
+                    <a href="/cases/a11y" class="policy-item">
+                        <h4>Report an accessibility issue</h4>
+                        <p>Help improve website usability by reporting accessibility barriers.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transparency and Accountability Section -->
+        <div class="transparency-section">
+            <div class="section-icon">
+                <i class="fas fa-eye"></i>
+            </div>
+            <h2>Transparency and Accountability</h2>
+            <p>Insights into our organizational integrity, reporting channels, and responsible practices</p>
+            
+            <div class="transparency-content">
+                <div class="company-section">
+                    <div class="subsection">
+                        <h3>Reach out</h3>
+                        <a href="/cases/bounty" class="policy-item">
+                            <h4>Bounty hunting</h4>
+                            <p>Responsibly report website vulnerabilities to enhance digital security.</p>
+                        </a>
+                        <a href="/cases/content" class="policy-item">
+                            <h4>Report content</h4>
+                            <p>Flag inappropriate or copyrighted content for immediate review.</p>
+                        </a>
+                    </div>
+                    
+                    <div class="company-info">
+                        <h3>Company data</h3>
+                        <h4><i class="fas fa-building"></i> Apex Technologies</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> 500 Corporate Plaza</p>
+                        <p>Austin, Texas, 73301</p>
+                        <p>United States</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:legal@apextech.ai">legal@apextech.ai</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+15124567890">+1 (512) 456-7890</a></p>
+                        <p><a href="/company" class="view-all-link">More information →</a></p>
+                    </div>
+                </div>
+                
+                <div class="transparency-policies">
+                    <a href="/legal/policy/return-and-refund-policy" class="legal-item">
+                        <h4>Return and Refund Policy</h4>
+                        <p>All sales with Apex Technologies are final and non-refundable. No returns or refunds will be issued under any circumstances.</p>
+                    </a>
+                    <a href="/legal/policy/disclaimer" class="legal-item">
+                        <h4>Disclaimer</h4>
+                        <p>Apex Technologies' website and app content are for informational purposes only and provided "as is" without guarantees of accuracy.</p>
+                    </a>
+                    <a href="/legal/policy/privacy-notice" class="legal-item">
+                        <h4>Privacy Notice</h4>
+                        <p>This notice outlines Apex Technologies' practices for collecting, processing, retaining, and disclosing personal information.</p>
+                    </a>
+                    <a href="/legal/policy/privacy-guide-for-accounts" class="legal-item">
+                        <h4>Privacy Guide for Accounts</h4>
+                        <p>Understand your privacy compliance responsibilities when using Apex Technologies.</p>
+                    </a>
+                    <a href="/legal/agreement/end-user-license-agreement" class="legal-item">
+                        <h4>End User License Agreement</h4>
+                        <p>Legal terms governing end user access and usage rights.</p>
+                    </a>
+                    <a href="/legal/policy/acceptable-use-policy" class="legal-item">
+                        <h4>Acceptable Use Policy</h4>
+                        <p>Outlines permitted and prohibited behaviors when using the services, including rules for AI usage.</p>
+                    </a>
+                    <a href="/legal/policy/security-and-compliance-overview" class="legal-item">
+                        <h4>Security and Compliance Overview</h4>
+                        <p>Discover Apex Technologies' robust security measures, including encryption, infrastructure safeguards, and compliance standards.</p>
+                    </a>
+                    <div style="grid-column: 1 / -1;">
+                        <a href="#" class="view-all-link">View all legal documents →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Apex Technologies. All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Settings modal functionality
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeSettings = document.getElementById('closeSettings');
+        const languageDropdown = document.getElementById('languageDropdown');
+        const countryDropdown = document.getElementById('countryDropdown');
+
+        // Country data with flags (using emoji flags for simplicity)
+        const countries = [
+            { name: 'Pakistan', flag: '🇵🇰', code: 'PK' },
+            { name: 'United States', flag: '🇺🇸', code: 'US' },
+            { name: 'United Kingdom', flag: '🇬🇧', code: 'GB' },
+            { name: 'Germany', flag: '🇩🇪', code: 'DE' },
+            { name: 'France', flag: '🇫🇷', code: 'FR' },
+            { name: 'India', flag: '🇮🇳', code: 'IN' },
+            { name: 'China', flag: '🇨🇳', code: 'CN' },
+            { name: 'Japan', flag: '🇯🇵', code: 'JP' },
+            { name: 'Canada', flag: '🇨🇦', code: 'CA' },
+            { name: 'Australia', flag: '🇦🇺', code: 'AU' }
+        ];
+
+        const languages = [
+            { name: 'English', code: 'en' },
+            { name: 'Urdu', code: 'ur' },
+            { name: 'Arabic', code: 'ar' },
+            { name: 'Spanish', code: 'es' },
+            { name: 'French', code: 'fr' },
+            { name: 'German', code: 'de' },
+            { name: 'Chinese', code: 'zh' },
+            { name: 'Japanese', code: 'ja' },
+            { name: 'Hindi', code: 'hi' }
+        ];
+
+        let currentCountry = countries.find(c => c.name === 'Pakistan');
+        let currentLanguage = languages.find(l => l.name === 'English');
+
+        // Open settings modal
+        settingsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            settingsModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close settings modal
+        function closeModal() {
+            settingsModal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        closeSettings.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        settingsModal.addEventListener('click', function(e) {
+            if (e.target === settingsModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && settingsModal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        // Language dropdown functionality
+        languageDropdown.addEventListener('click', function() {
+            showLanguageOptions();
+        });
+
+        // Country dropdown functionality
+        countryDropdown.addEventListener('click', function() {
+            showCountryOptions();
+        });
+
+        function showLanguageOptions() {
+            const dropdown = document.createElement('div');
+            dropdown.className = 'dropdown-options';
+            dropdown.style.cssText = `
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                max-height: 200px;
+                overflow-y: auto;
+                z-index: 1001;
+            `;
+
+            languages.forEach(lang => {
+                const option = document.createElement('div');
+                option.className = 'dropdown-option';
+                option.style.cssText = `
+                    padding: 12px 16px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #f3f4f6;
+                    transition: background-color 0.2s;
+                `;
+                option.textContent = lang.name;
+                
+                option.addEventListener('mouseenter', () => {
+                    option.style.backgroundColor = '#f8f9fa';
+                });
+                
+                option.addEventListener('mouseleave', () => {
+                    option.style.backgroundColor = '';
+                });
+
+                option.addEventListener('click', () => {
+                    currentLanguage = lang;
+                    updateLanguageDisplay();
+                    dropdown.remove();
+                });
+
+                dropdown.appendChild(option);
+            });
+
+            // Position the dropdown
+            languageDropdown.style.position = 'relative';
+            languageDropdown.appendChild(dropdown);
+
+            // Close dropdown when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', function closeDropdown(e) {
+                    if (!languageDropdown.contains(e.target)) {
+                        dropdown.remove();
+                        document.removeEventListener('click', closeDropdown);
+                    }
+                });
+            }, 0);
+        }
+
+        function showCountryOptions() {
+            const dropdown = document.createElement('div');
+            dropdown.className = 'dropdown-options';
+            dropdown.style.cssText = `
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                max-height: 200px;
+                overflow-y: auto;
+                z-index: 1001;
+            `;
+
+            countries.forEach(country => {
+                const option = document.createElement('div');
+                option.className = 'dropdown-option';
+                option.style.cssText = `
+                    padding: 12px 16px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #f3f4f6;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    transition: background-color 0.2s;
+                `;
+                
+                option.innerHTML = `<span style="font-size: 16px;">${country.flag}</span> ${country.name}`;
+                
+                option.addEventListener('mouseenter', () => {
+                    option.style.backgroundColor = '#f8f9fa';
+                });
+                
+                option.addEventListener('mouseleave', () => {
+                    option.style.backgroundColor = '';
+                });
+
+                option.addEventListener('click', () => {
+                    currentCountry = country;
+                    updateCountryDisplay();
+                    dropdown.remove();
+                });
+
+                dropdown.appendChild(option);
+            });
+
+            // Position the dropdown
+            countryDropdown.style.position = 'relative';
+            countryDropdown.appendChild(dropdown);
+
+            // Close dropdown when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', function closeDropdown(e) {
+                    if (!countryDropdown.contains(e.target)) {
+                        dropdown.remove();
+                        document.removeEventListener('click', closeDropdown);
+                    }
+                });
+            }, 0);
+        }
+
+        function updateLanguageDisplay() {
+            const content = languageDropdown.querySelector('.dropdown-content span');
+            content.textContent = currentLanguage.name;
+        }
+
+        function updateCountryDisplay() {
+            const content = countryDropdown.querySelector('.dropdown-content');
+            content.innerHTML = `<span style="font-size: 16px;">${currentCountry.flag}</span> <span>${currentCountry.name}</span>`;
+        }
+
+        // Initialize displays
+        updateLanguageDisplay();
+        updateCountryDisplay();
+
+        // Follow up link functionality
+        document.getElementById('followUpLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Follow up functionality would be implemented here!');
+        });
+    </script>
+</body>
+</html>
