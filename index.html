@@ -70,6 +70,12 @@
             font-size: 16px;
         }
         
+        .logo-image {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+        
         .nav-buttons {
             display: flex;
             gap: 20px;
@@ -138,10 +144,16 @@
             padding: 60px 0;
         }
         
+        /* Privacy section spans full width */
+        .main-content .section:first-child {
+            grid-column: 1 / -1;
+        }
+        
         .section {
             background: white;
             padding: 40px;
             border-radius: 12px;
+            border: 2px solid #e5e7eb;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
@@ -174,6 +186,11 @@
         
         .subsection {
             margin-bottom: 40px;
+        }
+        
+        /* Reduce spacing for the last subsection */
+        .subsection:last-child {
+            margin-bottom: 0;
         }
         
         .subsection h3 {
@@ -209,14 +226,28 @@
         }
         
         .policy-item:hover, .legal-item:hover {
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
             border-color: #005293;
-            box-shadow: 0 8px 25px rgba(0, 82, 147, 0.12);
-            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 82, 147, 0.15), 0 4px 15px rgba(255, 148, 29, 0.1);
+            transform: translateY(-4px) scale(1.02);
         }
         
         .policy-item:hover::before, .legal-item:hover::before {
             transform: scaleY(1);
+            background: linear-gradient(180deg, #FF941D 0%, #005293 100%);
+            width: 6px;
+        }
+        
+        .policy-item:hover h4, .legal-item:hover h4 {
+            color: #003d6b;
+            transform: translateX(8px);
+            transition: all 0.3s ease;
+        }
+        
+        .policy-item:hover p, .legal-item:hover p {
+            color: #555555;
+            transform: translateX(4px);
+            transition: all 0.3s ease;
         }
         
         .policy-item h4, .legal-item h4 {
@@ -224,12 +255,14 @@
             font-weight: 500;
             color: #005293;
             margin-bottom: 8px;
+            transition: all 0.3s ease;
         }
         
         .policy-item p, .legal-item p {
             font-size: 14px;
             color: #666666;
             line-height: 1.4;
+            transition: all 0.3s ease;
         }
         
         .view-all-link {
@@ -241,6 +274,26 @@
         
         .view-all-link:hover {
             text-decoration: underline;
+        }
+        
+        /* Privacy section 2-column layout */
+        .privacy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        
+        .privacy-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .privacy-policies {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         
         /* Special sections */
@@ -329,6 +382,11 @@
             
             .transparency-policies {
                 grid-template-columns: 1fr;
+            }
+            
+            .privacy-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
 
@@ -545,10 +603,7 @@
             <nav class="nav">
                 <div class="nav-left">
                     <a href="/" class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        Compliance Hub
+                        <img src="https://storage.googleapis.com/msgsndr/INU3oD1ZP4Ls0tvR46jL/media/68a64569a8a8e87bee761ef4.png" alt="Logo" class="logo-image">
                     </a>
                     <div class="nav-buttons">
                         <button class="nav-button">Legal</button>
@@ -573,7 +628,7 @@
             
             <div class="hero">
                 <h1>Governance Portal</h1>
-                <p>Empowering you through absolute transparency. Discover our comprehensive approach to privacy, security, accessibility, and responsible digital stewardship</p>
+                <p>Empowering you through absolute transparency.<br>Discover our comprehensive approach to privacy, security,<br>accessibility, and responsible digital stewardship</p>
             </div>
         </div>
     </header>
@@ -624,30 +679,33 @@
                 <h2>Privacy</h2>
                 <p>Transparent management of personal data collection, usage, and protection practices</p>
                 
-                <!-- Interactive Tools -->
-                <div class="subsection">
-                    <a href="/consents" class="policy-item">
-                        <h4>Consent receipts</h4>
-                        <p>Track and review your previous consent preferences</p>
-                    </a>
-                    <a href="#" class="policy-item">
-                        <h4>Manage cookies</h4>
-                        <p>Control and customize your website tracking preferences</p>
-                    </a>
-                </div>
-                
-                <!-- Policies -->
-                <div class="subsection">
-                    <h3>Policies</h3>
-                    <a href="/legal/policy/cookie-policy" class="policy-item">
-                        <h4>Cookie Policy</h4>
-                        <p>This Cookie Policy explains how we use cookies and similar technologies, including what types of cookies we use, why we use them, and how you can manage your cookie preferences.</p>
-                    </a>
-                    <a href="/legal/policy/liability-disclaimer-policy" class="policy-item">
-                        <h4>Liability Disclaimer Policy</h4>
-                        <p>The Apex Technologies Liability Disclaimer Policy establishes that while we provide compliance automation, data processing, and governance tools, the company does not guarantee legal compliance for all jurisdictions.</p>
-                    </a>
-                    <a href="#" class="view-all-link">View all policies →</a>
+                <!-- Privacy Content in 2-column layout -->
+                <div class="privacy-content">
+                    <!-- Left Column: Interactive Tools -->
+                    <div class="privacy-tools">
+                        <a href="/consents" class="policy-item">
+                            <h4>Consent receipts</h4>
+                            <p>Track and review your previous consent preferences</p>
+                        </a>
+                        <a href="#" class="policy-item">
+                            <h4>Manage cookies</h4>
+                            <p>Control and customize your website tracking preferences</p>
+                        </a>
+                    </div>
+                    
+                    <!-- Right Column: Policies -->
+                    <div class="privacy-policies">
+                        <h3>Policies</h3>
+                        <a href="/legal/policy/cookie-policy" class="policy-item">
+                            <h4>Cookie Policy</h4>
+                            <p>This Cookie Policy explains how we use cookies and similar technologies, including what types of cookies we use, why we use them, and how you can manage your cookie preferences.</p>
+                        </a>
+                        <a href="/legal/policy/liability-disclaimer-policy" class="policy-item">
+                            <h4>Liability Disclaimer Policy</h4>
+                            <p>The SocialBlastPRO Liability Disclaimer Policy establishes that while we provide compliance automation, data processing, and governance tools, the company does not guarantee legal compliance for all jurisdictions.</p>
+                        </a>
+                        <a href="#" class="view-all-link">View all policies →</a>
+                    </div>
                 </div>
             </div>
 
@@ -662,7 +720,7 @@
                 <div class="subsection">
                     <a href="/legal/terms/terms-of-service" class="legal-item">
                         <h4>Terms of Service</h4>
-                        <p>Governs use of Apex Technologies' platforms and applications, including compliance tools and data processing services. Covers user responsibilities, subscriptions, payments, account restrictions, acceptable use, privacy, and dispute resolution.</p>
+                        <p>Governs use of SocialBlastPRO's platforms and applications, including compliance tools and data processing services. Covers user responsibilities, subscriptions, payments, account restrictions, acceptable use, privacy, and dispute resolution.</p>
                     </a>
                     <a href="/legal/agreement/affiliate-program-agreement" class="legal-item">
                         <h4>Partner Program Agreement</h4>
@@ -670,7 +728,7 @@
                     </a>
                     <a href="/legal/agreement/data-processing-agreement" class="legal-item">
                         <h4>Data Processing Agreement</h4>
-                        <p>This agreement governs how Apex Technologies processes personal data on behalf of clients, ensuring compliance with data protection laws like GDPR, CCPA, and other global privacy regulations.</p>
+                        <p>This agreement governs how SocialBlastPRO processes personal data on behalf of clients, ensuring compliance with data protection laws like GDPR, CCPA, and other global privacy regulations.</p>
                     </a>
                     <!-- Trigger link -->
                     <a href="#" id="view-all" style="color:#1a73e8; font-weight:600;">View all legal documents →</a>
@@ -705,7 +763,15 @@
                     </a>
                     <a href="/cases/a11y" class="policy-item">
                         <h4>Report an accessibility issue</h4>
-                        <p>Help improve website usability by reporting accessibility barriers.</p>
+                        <p>Help improve website usability by reporting accessibility barriers</p>
+                    </a>
+                    <a href="#" class="policy-item">
+                        <h4>Accessibility statement</h4>
+                        <p>Our commitment to digital accessibility standards and compliance</p>
+                    </a>
+                    <a href="#" class="policy-item">
+                        <h4>Assistive technology support</h4>
+                        <p>Compatible tools and features for enhanced accessibility experience</p>
                     </a>
                 </div>
             </div>
@@ -735,12 +801,12 @@
                     
                     <div class="company-info">
                         <h3>Company data</h3>
-                        <h4><i class="fas fa-building"></i> Apex Technologies</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> 500 Corporate Plaza</p>
-                        <p>Austin, Texas, 73301</p>
+                        <h4><i class="fas fa-building"></i> SocialBlastPRO</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> 28 E Main St, Unit #290</p>
+                        <p>Avon Park, FL</p>
                         <p>United States</p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:legal@apextech.ai">legal@apextech.ai</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+15124567890">+1 (512) 456-7890</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:support@socialblast.pro">support@socialblast.pro</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+18136380631">(813) 638-0631</a></p>
                         <p><a href="/company" class="view-all-link">More information →</a></p>
                     </div>
                 </div>
@@ -748,19 +814,19 @@
                 <div class="transparency-policies">
                     <a href="/legal/policy/return-and-refund-policy" class="legal-item">
                         <h4>Return and Refund Policy</h4>
-                        <p>All sales with Apex Technologies are final and non-refundable. No returns or refunds will be issued under any circumstances.</p>
+                        <p>All sales with SocialBlastPRO are final and non-refundable. No returns or refunds will be issued under any circumstances.</p>
                     </a>
                     <a href="/legal/policy/disclaimer" class="legal-item">
                         <h4>Disclaimer</h4>
-                        <p>Apex Technologies' website and app content are for informational purposes only and provided "as is" without guarantees of accuracy.</p>
+                        <p>SocialBlastPRO's website and app content are for informational purposes only and provided "as is" without guarantees of accuracy.</p>
                     </a>
                     <a href="/legal/policy/privacy-notice" class="legal-item">
                         <h4>Privacy Notice</h4>
-                        <p>This notice outlines Apex Technologies' practices for collecting, processing, retaining, and disclosing personal information.</p>
+                        <p>This notice outlines SocialBlastPRO's practices for collecting, processing, retaining, and disclosing personal information.</p>
                     </a>
                     <a href="/legal/policy/privacy-guide-for-accounts" class="legal-item">
                         <h4>Privacy Guide for Accounts</h4>
-                        <p>Understand your privacy compliance responsibilities when using Apex Technologies.</p>
+                        <p>Understand your privacy compliance responsibilities when using SocialBlastPRO.</p>
                     </a>
                     <a href="/legal/agreement/end-user-license-agreement" class="legal-item">
                         <h4>End User License Agreement</h4>
@@ -772,7 +838,7 @@
                     </a>
                     <a href="/legal/policy/security-and-compliance-overview" class="legal-item">
                         <h4>Security and Compliance Overview</h4>
-                        <p>Discover Apex Technologies' robust security measures, including encryption, infrastructure safeguards, and compliance standards.</p>
+                        <p>Discover SocialBlastPRO's robust security measures, including encryption, infrastructure safeguards, and compliance standards.</p>
                     </a>
                     <div style="grid-column: 1 / -1;">
                         <!-- Trigger link -->
@@ -799,7 +865,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>© 2025 Apex Technologies. All rights reserved</p>
+            <p>© 2025 SocialBlastPRO. All rights reserved</p>
         </div>
     </footer>
 
