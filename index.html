@@ -17,10 +17,11 @@
         
         body {
             font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-            background-color: #ffffff;
-            color: #333333;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            color: #1e293b;
             font-size: 16px;
-            line-height: 1.5;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
         .container {
@@ -31,8 +32,11 @@
         
         /* Header Styles */
         .header {
-            background-color: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 10px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
         }
         
         .nav {
@@ -51,7 +55,7 @@
         .logo {
             font-size: 20px;
             font-weight: 700;
-            color: #005293;
+            color: #005395;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -61,7 +65,7 @@
         .logo-icon {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #005293 0%, #FF941D 100%);
+            background: linear-gradient(135deg, #005395 0%, #FF991F 100%);
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -84,10 +88,17 @@
         .nav-button {
             background: none;
             border: none;
-            color: #005293;
+            color: #005395;
             font-size: 16px;
             cursor: pointer;
             padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-button:hover {
+            background: rgba(0, 83, 149, 0.1);
+            color: #00569B;
         }
         
         .nav-right {
@@ -111,9 +122,9 @@
         }
         
         .icon-button:hover {
-            background: #f8f9fa;
-            border-color: #005293;
-            color: #005293;
+            background: rgba(0, 83, 149, 0.1);
+            border-color: #005395;
+            color: #005395;
         }
         
         .hero {
@@ -124,8 +135,12 @@
         .hero h1 {
             font-size: 72px;
             font-weight: 700;
-            color: #005293;
+            color: #005395;
             margin-bottom: 24px;
+            background: linear-gradient(135deg, #005395 0%, #00579C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
@@ -152,15 +167,21 @@
         .section {
             background: white;
             padding: 40px;
-            border-radius: 12px;
-            border: 2px solid #e5e7eb;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 83, 149, 0.1), 0 10px 10px -5px rgba(0, 83, 149, 0.04);
         }
         
         .section-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, #005293 0%, #FF941D 100%);
+            background: linear-gradient(135deg, #005395 0%, #FF931E 100%);
             border-radius: 12px;
             margin-bottom: 24px;
             display: flex;
@@ -168,14 +189,18 @@
             justify-content: center;
             color: white;
             font-size: 20px;
-            box-shadow: 0 4px 12px rgba(0, 82, 147, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 83, 149, 0.25);
         }
         
         .section h2 {
             font-size: 52px;
-            font-weight: 500;
-            color: #005293;
+            font-weight: 600;
+            color: #005395;
             margin-bottom: 16px;
+            background: linear-gradient(135deg, #005395 0%, #00579C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .section > p {
@@ -195,15 +220,15 @@
         
         .subsection h3 {
             font-size: 18px;
-            font-weight: 500;
-            color: #FF941D;
+            font-weight: 600;
+            color: #FF931E;
             margin-bottom: 20px;
         }
         
         .policy-item, .legal-item {
-            background: #f8f9fa;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 24px;
             margin-bottom: 16px;
             text-decoration: none;
@@ -220,26 +245,27 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: #FF941D;
+            background: linear-gradient(180deg, #FF931E 0%, #FF991F 100%);
             transform: scaleY(0);
             transition: transform 0.3s ease;
+            border-radius: 0 4px 4px 0;
         }
         
         .policy-item:hover, .legal-item:hover {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-            border-color: #005293;
-            box-shadow: 0 12px 35px rgba(0, 82, 147, 0.15), 0 4px 15px rgba(255, 148, 29, 0.1);
-            transform: translateY(-4px) scale(1.02);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            border-color: #005395;
+            box-shadow: 0 20px 25px -5px rgba(0, 83, 149, 0.1), 0 10px 10px -5px rgba(0, 83, 149, 0.04);
+            transform: translateY(-4px);
         }
         
         .policy-item:hover::before, .legal-item:hover::before {
             transform: scaleY(1);
-            background: linear-gradient(180deg, #FF941D 0%, #005293 100%);
+            background: linear-gradient(180deg, #FF931E 0%, #005395 100%);
             width: 6px;
         }
         
         .policy-item:hover h4, .legal-item:hover h4 {
-            color: #003d6b;
+            color: #00569B;
             transform: translateX(8px);
             transition: all 0.3s ease;
         }
@@ -252,8 +278,8 @@
         
         .policy-item h4, .legal-item h4 {
             font-size: 16px;
-            font-weight: 500;
-            color: #005293;
+            font-weight: 600;
+            color: #005395;
             margin-bottom: 8px;
             transition: all 0.3s ease;
         }
@@ -266,10 +292,10 @@
         }
         
         .view-all-link {
-            color: #FF941D;
+            color: #FF931E;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .view-all-link:hover {
@@ -307,9 +333,10 @@
         .transparency-section {
             background: white;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             grid-column: 1 / -1;
+            border: 1px solid #f1f5f9;
         }
         
         .transparency-content {
@@ -321,8 +348,8 @@
         
         .company-info h4 {
             font-size: 16px;
-            font-weight: 500;
-            color: #005293;
+            font-weight: 600;
+            color: #005395;
             margin-bottom: 16px;
         }
         
@@ -333,8 +360,9 @@
         }
         
         .company-info a {
-            color: #FF941D;
+            color: #FF931E;
             text-decoration: none;
+            font-weight: 500;
         }
         
         .company-info a:hover {
@@ -349,11 +377,12 @@
         
         /* Footer */
         .footer {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8fafb 0%, #f1f5f9 100%);
             padding: 40px 0;
             text-align: center;
-            color: #666666;
+            color: #64748b;
             font-size: 14px;
+            border-top: 1px solid #e2e8f0;
         }
         
         /* Responsive Design */
@@ -439,7 +468,7 @@
         .settings-header h3 {
             font-size: 18px;
             font-weight: 600;
-            color: #005293;
+            color: #005395;
             margin: 0;
         }
 
@@ -458,7 +487,7 @@
         }
 
         .close-settings:hover {
-            color: #005293;
+            color: #005395;
         }
 
         .settings-section {
@@ -489,7 +518,7 @@
         }
 
         .settings-dropdown:hover {
-            border-color: #005293;
+            border-color: #005395;
         }
 
         .dropdown-content {
@@ -517,10 +546,10 @@
         }
 
         .follow-up a {
-            color: #FF941D;
+            color: #FF931E;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .follow-up a:hover {
@@ -570,7 +599,8 @@
         }
 
         .search-input:focus {
-            border-color: #005293;
+            border-color: #005395;
+            box-shadow: 0 0 0 3px rgba(0, 83, 149, 0.1);
         }
 
         .search-input::placeholder {
@@ -704,7 +734,7 @@
                             <h4>Liability Disclaimer Policy</h4>
                             <p>The SocialBlastPRO Liability Disclaimer Policy establishes that while we provide compliance automation, data processing, and governance tools, the company does not guarantee legal compliance for all jurisdictions.</p>
                         </a>
-                        <a href="#" class="view-all-link" id="view-all-policies" style="color:#1a73e8; font-weight:600;">View all policies →</a>
+                        <a href="#" class="view-all-link" id="view-all-policies" style="color:#FF931E; font-weight:600;">View all policies →</a>
                     </div>
                 </div>
             </div>
@@ -731,7 +761,7 @@
                         <p>This agreement governs how SocialBlastPRO processes personal data on behalf of clients, ensuring compliance with data protection laws like GDPR, CCPA, and other global privacy regulations.</p>
                     </a>
                     <!-- Trigger link -->
-                    <a href="#" id="view-all" style="color:#1a73e8; font-weight:600;">View all legal documents →</a>
+                    <a href="#" id="view-all" style="color:#FF931E; font-weight:600;">View all legal documents →</a>
                     <!-- Full-screen overlay -->
                     <div id="tabs-overlay" style="
                       display:none;
@@ -842,7 +872,7 @@
                     </a>
                     <div style="grid-column: 1 / -1;">
                         <!-- Trigger link -->
-                        <a href="#" id="view-all-2" style="color:#1a73e8; font-weight:600;">View all legal documents →</a>
+                        <a href="#" id="view-all-2" style="color:#FF931E; font-weight:600;">View all legal documents →</a>
                         <!-- Full-screen overlay -->
                         <div id="tabs-overlay-2" style="
                           display:none;
@@ -1230,4 +1260,5 @@
 </body>
 
 </html>
+
 
