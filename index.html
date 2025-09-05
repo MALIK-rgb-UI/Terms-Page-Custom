@@ -628,7 +628,7 @@
             
             <div class="hero">
                 <h1>Governance Portal</h1>
-                <p>Empowering you through absolute transparency.<br>Discover our comprehensive approach to privacy, security,<br>accessibility, and responsible digital stewardship</p>
+                <p>Empowering you through absolute transparency. Discover our approach<br>to privacy, security, accessibility, and responsible digital stewardship</p>
             </div>
         </div>
     </header>
@@ -704,7 +704,7 @@
                             <h4>Liability Disclaimer Policy</h4>
                             <p>The SocialBlastPRO Liability Disclaimer Policy establishes that while we provide compliance automation, data processing, and governance tools, the company does not guarantee legal compliance for all jurisdictions.</p>
                         </a>
-                        <a href="#" class="view-all-link">View all policies →</a>
+                        <a href="#" class="view-all-link" id="view-all-policies" style="color:#1a73e8; font-weight:600;">View all policies →</a>
                     </div>
                 </div>
             </div>
@@ -1197,6 +1197,20 @@
           document.body.style.overflow = ""; // restore scroll
         }
         
+        // View all policies functionality
+        const viewAllPolicies = document.getElementById("view-all-policies");
+        if (viewAllPolicies) {
+          viewAllPolicies.addEventListener("click", function(e) {
+            e.preventDefault();
+            overlay.style.display = "block";        // show overlay immediately
+            document.body.style.overflow = "hidden"; // prevent background scroll
+            // Load iframe after overlay renders
+            setTimeout(() => {
+              iframe.src = "https://malik-rgb-ui.github.io/Tabs/";
+            }, 10);
+          });
+        }
+
         // Handle postMessage from iframe to close overlay
         window.addEventListener('message', function(event) {
           if (event.data === 'closeOverlay') {
@@ -1216,3 +1230,4 @@
 </body>
 
 </html>
+
