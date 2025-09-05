@@ -672,7 +672,21 @@
                         <h4>Data Processing Agreement</h4>
                         <p>This agreement governs how Apex Technologies processes personal data on behalf of clients, ensuring compliance with data protection laws like GDPR, CCPA, and other global privacy regulations.</p>
                     </a>
-                    <a href="#" class="view-all-link">View all legal documents →</a>
+                    <!-- Trigger link -->
+                    <a href="#" id="view-all" style="color:#1a73e8; font-weight:600;">View all legal documents →</a>
+                    <!-- Full-screen overlay -->
+                    <div id="tabs-overlay" style="
+                      display:none;
+                      position:fixed;
+                      top:0; left:0;
+                      width:100%; height:100%;
+                      background:rgba(0,0,0,0.6);
+                      z-index:9999;
+                      overflow:auto;
+                    ">
+                      <!-- Iframe -->
+                      <iframe id="tabs-iframe" src="" width="100%" height="100%" style="border:none;"></iframe>
+                    </div>
                 </div>
             </div>
 
@@ -761,7 +775,21 @@
                         <p>Discover Apex Technologies' robust security measures, including encryption, infrastructure safeguards, and compliance standards.</p>
                     </a>
                     <div style="grid-column: 1 / -1;">
-                        <a href="#" class="view-all-link">View all legal documents →</a>
+                        <!-- Trigger link -->
+                        <a href="#" id="view-all-2" style="color:#1a73e8; font-weight:600;">View all legal documents →</a>
+                        <!-- Full-screen overlay -->
+                        <div id="tabs-overlay-2" style="
+                          display:none;
+                          position:fixed;
+                          top:0; left:0;
+                          width:100%; height:100%;
+                          background:rgba(0,0,0,0.6);
+                          z-index:9999;
+                          overflow:auto;
+                        ">
+                          <!-- Iframe -->
+                          <iframe id="tabs-iframe-2" src="" width="100%" height="100%" style="border:none;"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1048,8 +1076,77 @@
                 }
             }
         });
+
+        // View all legal documents functionality
+        const viewAll = document.getElementById("view-all");
+        const overlay = document.getElementById("tabs-overlay");
+        const iframe = document.getElementById("tabs-iframe");
+        // Open overlay instantly and load iframe
+        viewAll.addEventListener("click", function(e) {
+          e.preventDefault();
+          overlay.style.display = "block";        // show overlay immediately
+          document.body.style.overflow = "hidden"; // prevent background scroll
+          // Load iframe after overlay renders
+          setTimeout(() => {
+            iframe.src = "https://malik-rgb-ui.github.io/Tabs/";
+          }, 10);
+        });
+        // Close overlay: clicking outside iframe
+        overlay.addEventListener("click", function(e) {
+          if(e.target === overlay){
+            closeOverlay();
+          }
+        });
+        // Function to close overlay and restore page
+        function closeOverlay() {
+          overlay.style.display = "none";   // hide overlay instantly
+          iframe.src = "";                   // reset iframe
+          document.body.style.overflow = ""; // restore scroll
+        }
+
+        // View all legal documents functionality for second link
+        const viewAll2 = document.getElementById("view-all-2");
+        const overlay2 = document.getElementById("tabs-overlay-2");
+        const iframe2 = document.getElementById("tabs-iframe-2");
+        // Open overlay instantly and load iframe
+        viewAll2.addEventListener("click", function(e) {
+          e.preventDefault();
+          overlay2.style.display = "block";        // show overlay immediately
+          document.body.style.overflow = "hidden"; // prevent background scroll
+          // Load iframe after overlay renders
+          setTimeout(() => {
+            iframe2.src = "https://malik-rgb-ui.github.io/Tabs/";
+          }, 10);
+        });
+        // Close overlay: clicking outside iframe
+        overlay2.addEventListener("click", function(e) {
+          if(e.target === overlay2){
+            closeOverlay2();
+          }
+        });
+        // Function to close overlay and restore page
+        function closeOverlay2() {
+          overlay2.style.display = "none";   // hide overlay instantly
+          iframe2.src = "";                   // reset iframe
+          document.body.style.overflow = ""; // restore scroll
+        }
+        
+        // Handle postMessage from iframe to close overlay
+        window.addEventListener('message', function(event) {
+          if (event.data === 'closeOverlay') {
+            // Close overlay 1 if it's currently visible
+            const overlay1 = document.querySelector('#tabs-overlay');
+            if (overlay1 && overlay1.style.display === 'block') {
+              closeOverlay();
+            }
+            // Close overlay 2 if it's currently visible
+            const overlay2 = document.querySelector('#tabs-overlay-2');
+            if (overlay2 && overlay2.style.display === 'block') {
+              closeOverlay2();
+            }
+          }
+        });
     </script>
 </body>
 
 </html>
-
